@@ -1,1 +1,1 @@
-# cse336hws
+# CSE336 homeworks
