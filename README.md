@@ -1,1 +1,1 @@
-# CSE336 homeworks
+# CSE336 examples
