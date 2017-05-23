@@ -32,7 +32,7 @@ $(document).ready(function() {
   
     // tell YQL what we want and that we want JSON
     data: {
-        q: "use 'http://github.com/yql/yql-tables/raw/master/weather/weather.bylocation.xml' as t_weather;"
+        q: "use 'https://github.com/yql/yql-tables/raw/master/weather/weather.bylocation.xml' as t_weather;"
          + "select * from t_weather where location='ottawa,canada' and unit='c'",
         format: "json"
     },
