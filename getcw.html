@@ -10,7 +10,17 @@ th,td {
   padding: 5px;
 }
 </style>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script type='text/javascript' src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+<h1>The XMLHttpRequest Object</h1>
+
+<button type="button" onclick="loadDoc()">Get my CD collection</button>
+<br><br>
+<div id="weather"></div>
+
 <script>
 $(document).ready(function() {
   $.ajax({
@@ -35,18 +45,6 @@ $(document).ready(function() {
     }
   });
 });
-</script>
-</head>
-<body>
-
-<h1>The XMLHttpRequest Object</h1>
-
-<button type="button" onclick="loadDoc()">Get my CD collection</button>
-<br><br>
-<div id="weather"></div>
-
-<script>
-
 </script>
 
 </body>
