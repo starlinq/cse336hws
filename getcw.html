@@ -17,42 +17,48 @@ th,td {
 
 <h1>The XMLHttpRequest Object</h1>
 
-<button type="button" onclick="loadDoc()">Get my CD collection</button>
 <br><br>
 <div id="weatherDate"></div>
 <div id="weather"></div>
 
 <script>
+// first version
+/*
 var query = "https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid=1967057 and u='c'&format=json&callback=?"
 $.getJSON(query, function(data) {
   $("#weatherDate").append(data.query.results.channel.item.condition.date);
   $("#weather").append(data.query.results.channel.item.description);
 });
-
-
-//$(document).ready(function() {
-//  $.ajax({
-//    url: "https://query.yahooapis.com/v1/public/yql",
-//    jsonp: "callback",
+*/
   
-//    // tell jQuery we're expecting JSONP
-//    dataType: "jsonp",
+// second version
+//
+$(document).ready(function() {
+  $.ajax({
+    url: "https://query.yahooapis.com/v1/public/yql",
+    jsonp: "callback",
   
-//    // tell YQL what we want and that we want JSON
-//    data: {
-//        q: "use 'https://github.com/yql/yql-tables/raw/master/weather/weather.bylocation.xml' as t_weather;"
-//         + "select * from t_weather where location='ottawa,canada' and unit='c'",
-//        format: "json"
-//   },
-//    success: function( response ) {
-//      var channel = response.query.results.weather.rss.channel;
-//      $('#weather').append($('<h2/>').text(channel.description));
-//      $.each(channel, function(index, item){
-//        if (item.description) { $('#weather').append($('<p/>').html(item.description)); }
-//      });
-//    }
-//  });
-//});
+    // tell jQuery we're expecting JSONP
+    dataType: "jsonp",
+  
+    // tell YQL what we want and that we want JSON
+    // https://raw.githubusercontent.com/yql/yql-tables/master/weather/weather.bylocation.xml
+    // https://github.com/yql/yql-tables/raw/master/weather/weather.bylocation.xml
+    data: {
+        q: "use 'https://raw.githubusercontent.com/yql/yql-tables/master/weather/weather.bylocation.xml' as t_weather;"
+         + "select * from t_weather where location='ottawa,canada' and unit='c'",
+        format: "json"
+   },
+    success: function( response ) {
+      var channel = response.query.results.weather.rss.channel;
+      $('#weather').append($('<h2/>').text(channel.description));
+      $.each(channel, function(index, item){
+        if (item.description) { $('#weather').append($('<p/>').html(item.description)); }
+      });
+    }
+  });
+});
+//
 </script>
 
 </body>
