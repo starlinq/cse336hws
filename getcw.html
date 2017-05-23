@@ -23,16 +23,16 @@ th,td {
 
 <script>
 // first version
-/*
+//
 var query = "https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid=1967057 and u='c'&format=json&callback=?"
 $.getJSON(query, function(data) {
   $("#weatherDate").append(data.query.results.channel.item.condition.date);
   $("#weather").append(data.query.results.channel.item.description);
 });
-*/
+//
   
 // second version
-//
+/*
 $(document).ready(function() {
   $.ajax({
     url: "https://query.yahooapis.com/v1/public/yql",
@@ -58,7 +58,7 @@ $(document).ready(function() {
     }
   });
 });
-//
+*/
 </script>
 
 </body>
