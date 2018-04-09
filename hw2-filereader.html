@@ -1,0 +1,87 @@
+<html>
+    <head>
+    <style>
+  .thumb {
+    height: 75px;
+    border: 1px solid #000;
+    margin: 10px 5px 0 0;
+  }
+</style>
+    </head>
+    <body>
+    
+        <input type="file" id="files" name="files[]" multiple />
+        
+<!--        <output id="list"></output>-->
+        
+        <p id="list"></p>
+
+<script>
+    
+    // See:
+    // https://www.html5rocks.com/en/tutorials/file/dndfiles/
+    
+    // Check for the various File API support.
+    if (window.File && window.FileReader && window.FileList && window.Blob) {
+      // Great success! All the File APIs are supported.
+    } else {
+      alert('The File APIs are not fully supported in this browser.');
+    }
+    
+  function handleFileSelect(evt) {
+      
+    var files = evt.target.files; // FileList object
+
+    // Loop through the FileList and render image files as thumbnails.
+    for (var i = 0, f; f = files[i]; i++) {
+
+//      // Only process image files.
+//      if (!f.type.match('image.*')) {
+//        continue;
+//      }
+
+      var reader = new FileReader();
+
+      // Closure to capture the file information.
+//      reader.onload = (function(theFile) {
+//        return function(e) {
+//          // Render thumbnail.
+////          var span = document.createElement('span');
+////          span.innerHTML = ['<img class="thumb" src="', e.target.result,
+////                            '" title="', escape(theFile.name), '"/>'].join('');
+////          document.getElementById('list').insertBefore(span, null);
+//            console.log(e.target.result);
+//            document.getElementById('list').textContent = e.target.result;
+//        };
+//      })(f);
+        
+      reader.onloadend = function(evt) {
+          
+          console.log(evt.target.result);
+          alert(evt.target.result);
+          
+          // alert(event.target.result.replace(/\r/g, "\n"));
+//        var res = evt.target.result.replace(/\r/g, "\n");
+        var res = evt.target.result.replace(/\n/g, "<br>");
+        
+      if (evt.target.readyState == FileReader.DONE) { // DONE == 2
+          
+//        document.getElementById('list').textContent = evt.target.result;
+          
+        document.getElementById('list').innerHTML = res;
+        
+      }
+    };
+
+      // Read in the image file as a data URL.
+      reader.readAsText(f);//.readAsDataURL(f);
+    }
+  }
+
+  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+</script>
+
+    </body>
+</html>
+
+
